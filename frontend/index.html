@@ -1,104 +1,354 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CareerOS — Reverse-engineer your dream career</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>CareerOS — Reverse-engineer your dream career</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+
+  <!-- Main CareerOS CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- NEW: 3D Robot CSS -->
+  <link rel="stylesheet" href="robot.css">
 </head>
+
 <body>
+
 <div class="bg-grid" aria-hidden="true"></div>
 
-<!-- ================= LANDING ================= -->
+<!-- ================= LANDING PAGE ================= -->
+
 <section id="landing-view" class="view active">
+
   <header class="land-nav">
+
     <span class="logo">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <circle cx="5" cy="19" r="2"/><circle cx="12" cy="8" r="2"/><circle cx="19" cy="4" r="2"/>
+      <svg width="22" height="22" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor"
+           stroke-width="2" aria-hidden="true">
+
+        <circle cx="5" cy="19" r="2"/>
+        <circle cx="12" cy="8" r="2"/>
+        <circle cx="19" cy="4" r="2"/>
+
         <path d="M6.5 17.5 11 10M13.5 7l4-2"/>
       </svg>
+
       CareerOS
     </span>
+
     <div class="row">
-      <button class="btn" id="load-btn" type="button">Load saved path</button>
-      <button class="btn" id="demo-btn" type="button">Demo Mode</button>
+      <button class="btn" id="load-btn" type="button">
+        Load saved path
+      </button>
+
+      <button class="btn" id="demo-btn" type="button">
+        Demo Mode
+      </button>
     </div>
+
   </header>
 
+
   <div class="hero">
+
+    <!-- LEFT SIDE: CAREER FORM -->
+
     <div class="hero-text">
-      <span class="badge">AI career reverse engineering</span>
-      <h1>Your dream job isn't a destination.<br>It's a sequence of decisions.</h1>
-      <p class="sub">CareerOS works backward from the exact role you want, identifies what you're missing, and dynamically builds the path to become job-ready.</p>
+
+      <span class="badge">
+        AI career reverse engineering
+      </span>
+
+      <h1>
+        Your dream job isn't a destination.
+        <br>
+        It's a sequence of decisions.
+      </h1>
+
+      <p class="sub">
+        CareerOS works backward from the exact role you want,
+        identifies what you're missing, and dynamically builds
+        the path to become job-ready.
+      </p>
+
 
       <form id="job-form" class="job-box" novalidate>
-        <label for="job-input" class="sr">What job do you want?</label>
-        <input id="job-input" placeholder="Frontend Engineer at a FinTech startup" autocomplete="off">
-        <button class="btn primary" type="submit">Build my career path →</button>
+
+        <label for="job-input" class="sr">
+          What job do you want?
+        </label>
+
+        <input
+          id="job-input"
+          placeholder="Frontend Engineer at a FinTech startup"
+          autocomplete="off"
+        >
+
+        <button class="btn primary" type="submit">
+          Build my career path →
+        </button>
+
       </form>
+
 
       <div id="suggest" class="chips"></div>
 
+
       <details class="more">
-        <summary>Paste a job description or add details (optional)</summary>
+
+        <summary>
+          Paste a job description or add details (optional)
+        </summary>
+
         <div class="more-grid">
-          <label class="field">Industry<input id="f-industry" placeholder="FinTech"></label>
-          <label class="field">Hours per week<input id="f-hours" type="number" min="1" max="80" value="10"></label>
-          <label class="field">Timeline (months)<input id="f-months" type="number" min="1" max="36" value="8"></label>
-          <label class="field wide">Your current skills (comma separated)<input id="f-skills" placeholder="HTML, CSS, JavaScript, Git"></label>
-          <label class="field wide">Job description<textarea id="f-jd" rows="4" placeholder="Paste the job description here…"></textarea></label>
+
+          <label class="field">
+            Industry
+            <input
+              id="f-industry"
+              placeholder="FinTech"
+            >
+          </label>
+
+          <label class="field">
+            Hours per week
+            <input
+              id="f-hours"
+              type="number"
+              min="1"
+              max="80"
+              value="10"
+            >
+          </label>
+
+          <label class="field">
+            Timeline (months)
+            <input
+              id="f-months"
+              type="number"
+              min="1"
+              max="36"
+              value="8"
+            >
+          </label>
+
+          <label class="field wide">
+            Your current skills (comma separated)
+            <input
+              id="f-skills"
+              placeholder="HTML, CSS, JavaScript, Git"
+            >
+          </label>
+
+          <label class="field wide">
+            Job description
+            <textarea
+              id="f-jd"
+              rows="4"
+              placeholder="Paste the job description here…"
+            ></textarea>
+          </label>
+
         </div>
+
       </details>
 
       <p id="job-err" class="err" role="alert"></p>
+
     </div>
 
-    <div class="hero-graph" id="hero-graph" aria-hidden="true">
+
+    <!-- ========================================= -->
+    <!-- NEW FEATURE: INTERACTIVE 3D ROBOT          -->
+    <!-- ========================================= -->
+
+    <div
+      class="hero-robot"
+      id="hero-robot"
+      aria-hidden="true"
+    ></div>
+
+
+    <!-- Original CareerOS graph kept as fallback -->
+
+    <div
+      class="hero-graph"
+      id="hero-graph"
+      aria-hidden="true"
+    >
+
       <div class="hn" style="--i:0">Current</div>
       <div class="hn" style="--i:1">JavaScript</div>
       <div class="hn" style="--i:2">React</div>
       <div class="hn" style="--i:3">FinTech project</div>
       <div class="hn" style="--i:4">Interview</div>
       <div class="hn target" style="--i:5">Dream job</div>
+
     </div>
+
   </div>
+
 </section>
 
-<!-- ================= APP SHELL ================= -->
+
+
+<!-- ================= CAREEROS APP ================= -->
+
 <div id="app-shell" hidden>
+
+  <!-- SIDEBAR -->
+
   <aside class="sidebar" id="sidebar">
-    <button class="logo logo-btn" id="home-btn" type="button" aria-label="Back to start page">◈ CareerOS</button>
+
+    <button
+      class="logo logo-btn"
+      id="home-btn"
+      type="button"
+      aria-label="Back to start page"
+    >
+      ◈ CareerOS
+    </button>
+
     <nav id="nav" aria-label="Main"></nav>
-    <div class="ai-status" id="ai-status-box" data-state="online"><i></i><span id="ai-status">AI Online</span></div>
+
+    <div
+      class="ai-status"
+      id="ai-status-box"
+      data-state="online"
+    >
+      <i></i>
+      <span id="ai-status">AI Online</span>
+    </div>
+
   </aside>
 
+
+
+  <!-- MAIN APPLICATION -->
+
   <div class="main">
+
     <header class="topbar">
-      <button class="icon-btn menu" id="menu-btn" type="button" aria-label="Open menu">☰</button>
+
+      <button
+        class="icon-btn menu"
+        id="menu-btn"
+        type="button"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
       <h2 id="page-title">Dashboard</h2>
+
       <div class="pill" id="target-pill" hidden></div>
-      <div class="avatar" title="Sunny" aria-label="Profile">S</div>
+
+      <div
+        class="avatar"
+        title="Sunny"
+        aria-label="Profile"
+      >
+        S
+      </div>
+
     </header>
 
-    <main id="main-content">
-      <section id="dashboard-view" class="view"></section>
 
-      <section id="career-map-view" class="view">
+    <main id="main-content">
+
+      <!-- DASHBOARD -->
+      <section
+        id="dashboard-view"
+        class="view"
+      ></section>
+
+
+      <!-- CAREER ROADMAP -->
+      <section
+        id="career-map-view"
+        class="view"
+      >
+
         <div class="map-wrap">
-          <div class="map-label" id="map-label">CAREER MAP / LIVE</div>
-          <div class="map-tools">
-            <button class="icon-btn" type="button" data-z="in" aria-label="Zoom in" title="Zoom in">+</button>
-            <button class="icon-btn" type="button" data-z="out" aria-label="Zoom out" title="Zoom out">−</button>
-            <button class="icon-btn" type="button" data-z="fit" aria-label="Fit map" title="Fit map">⤢</button>
-            <button class="icon-btn" type="button" data-z="reset" aria-label="Reset map" title="Reset map">↺</button>
-            <button class="icon-btn" type="button" id="whatif-btn" aria-label="What if?" title="What if?">?</button>
+
+          <div class="map-label" id="map-label">
+            CAREER MAP / LIVE
           </div>
+
+
+          <!-- GRAPH CONTROLS -->
+
+          <div class="map-tools">
+
+            <button
+              class="icon-btn"
+              type="button"
+              data-z="in"
+              aria-label="Zoom in"
+              title="Zoom in"
+            >+</button>
+
+            <button
+              class="icon-btn"
+              type="button"
+              data-z="out"
+              aria-label="Zoom out"
+              title="Zoom out"
+            >−</button>
+
+            <button
+              class="icon-btn"
+              type="button"
+              data-z="fit"
+              aria-label="Fit map"
+              title="Fit map"
+            >⤢</button>
+
+            <button
+              class="icon-btn"
+              type="button"
+              data-z="reset"
+              aria-label="Reset map"
+              title="Reset map"
+            >↺</button>
+
+            <button
+              class="icon-btn"
+              type="button"
+              id="whatif-btn"
+              aria-label="What if?"
+              title="What if?"
+            >?</button>
+
+          </div>
+
+
+
+          <!-- SEARCH AND FILTER -->
+
           <div class="map-bar">
-            <input id="map-search" class="map-input" placeholder="Search skills…" aria-label="Search skills">
-            <select id="map-filter" class="map-input" aria-label="Filter map">
+
+            <input
+              id="map-search"
+              class="map-input"
+              placeholder="Search skills…"
+              aria-label="Search skills"
+            >
+
+            <select
+              id="map-filter"
+              class="map-input"
+              aria-label="Filter map"
+            >
+
               <option value="all">All</option>
               <option value="type:skill">Skills</option>
               <option value="type:project">Projects</option>
@@ -109,45 +359,141 @@
               <option value="status:current">Current</option>
               <option value="status:locked">Locked</option>
               <option value="priority:critical">Critical</option>
+
             </select>
+
           </div>
+
+
+
+          <!-- CYTOSCAPE GRAPH -->
+
           <div id="cy"></div>
-          <div class="legend">✓ Done · ● Current · ○ Upcoming · 🔒 Locked · ◆ Critical · ┄ Optional</div>
-          <div class="saved" id="saved-banner" hidden></div>
+
+
+          <div class="legend">
+            ✓ Done · ● Current · ○ Upcoming · 🔒 Locked · ◆ Critical · ┄ Optional
+          </div>
+
+
+          <div
+            class="saved"
+            id="saved-banner"
+            hidden
+          ></div>
+
         </div>
+
       </section>
 
+
+
+      <!-- OTHER CAREEROS FEATURES -->
+
       <section id="gaps-view" class="view"></section>
+
       <section id="projects-view" class="view"></section>
+
       <section id="interview-view" class="view"></section>
+
       <section id="simulator-view" class="view"></section>
+
       <section id="profile-view" class="view"></section>
+
       <section id="settings-view" class="view"></section>
+
     </main>
+
   </div>
 
-  <aside id="node-panel" class="panel" aria-label="Milestone details"></aside>
+
+
+  <!-- MILESTONE DETAILS PANEL -->
+
+  <aside
+    id="node-panel"
+    class="panel"
+    aria-label="Milestone details"
+  ></aside>
+
 </div>
+
+
 
 <!-- ================= LOADING OVERLAY ================= -->
+
 <div id="loading" class="overlay" hidden>
+
   <div class="core"></div>
-  <h3 id="load-title">Reverse-engineering your career…</h3>
+
+  <h3 id="load-title">
+    Reverse-engineering your career…
+  </h3>
+
   <ul id="load-steps"></ul>
+
+
   <div id="load-err" hidden>
-    <p id="load-msg">We couldn't reach the AI engine.</p>
+
+    <p id="load-msg">
+      We couldn't reach the AI engine.
+    </p>
+
     <div class="row center">
-      <button class="btn primary" id="retry" type="button">Retry</button>
-      <button class="btn" id="to-demo" type="button">Continue with Demo</button>
-      <button class="btn" id="load-back" type="button">Back</button>
+
+      <button
+        class="btn primary"
+        id="retry"
+        type="button"
+      >
+        Retry
+      </button>
+
+      <button
+        class="btn"
+        id="to-demo"
+        type="button"
+      >
+        Continue with Demo
+      </button>
+
+      <button
+        class="btn"
+        id="load-back"
+        type="button"
+      >
+        Back
+      </button>
+
     </div>
+
   </div>
+
 </div>
 
+
+
+<!-- ================= MODALS AND TOASTS ================= -->
+
 <div id="modal-root"></div>
+
 <div id="toasts" aria-live="polite"></div>
 
+
+
+<!-- ================= JAVASCRIPT LIBRARIES ================= -->
+
+<!-- Career roadmap graph library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
+
+<!-- NEW: Three.js for the 3D robot -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<!-- NEW: Robot animation and mouse interaction -->
+<script src="robot.js"></script>
+
+<!-- Existing CareerOS functionality and FastAPI connection -->
 <script src="script.js"></script>
+
 </body>
 </html>
