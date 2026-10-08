@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+sqlalchemy>=2.0,<3.0
+pymysql[rsa]
+python-dotenv
+pydantic>=2.0,<3.0
+google-genai
