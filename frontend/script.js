@@ -10,8 +10,11 @@
 
 
 /* ============ 1. CONFIGURATION ============ */
-const API_BASE_URL = "http://127.0.0.1:8765";   // <-- change this to your FastAPI address
-const USER_NAME = "Sunny";
+const API_BASE_URL =
+  ["localhost", "127.0.0.1"].includes(window.location.hostname)
+    ? "http://127.0.0.1:8765"
+    : window.location.origin;   // <-- change this to your FastAPI address
+const USER_NAME = "Ayush";
 const REQUEST_TIMEOUT_MS = 90000;               // Gemini can be slow, so wait up to 90s
 const DEMO_SAVE_KEY = "careeros-demo-save";
 const DEFAULT_PROOF_ITEMS = ["GitHub repository", "README", "Live deployment", "Screenshots", "Architecture explanation", "Interview explanation"];
